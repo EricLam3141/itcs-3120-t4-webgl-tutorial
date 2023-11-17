@@ -1,10 +1,10 @@
-// MultiPoint.js (c) 2012 matsuda
+// HelloTriangle.js (c) 2012 matsuda
 // Vertex shader program
+
 var VSHADER_SOURCE =
   'attribute vec4 a_Position;\n' +
   'void main() {\n' +
   '  gl_Position = a_Position;\n' +
-  '  gl_PointSize = 10.0;\n' +
   '}\n';
 
 // Fragment shader program
@@ -25,8 +25,7 @@ function main() {
   }
 
   // Initialize shaders
-  i if (!initShaders(gl, document.getElementByID ("VertexShader1").innerText,
-  document.getElementByID("FragmentShader1").innerText)) {
+  if (!initShaders(gl, VSHADER_SOURCE, FSHADER_SOURCE)) {
     console.log('Failed to intialize shaders.');
     return;
   }
@@ -44,15 +43,15 @@ function main() {
   // Clear <canvas>
   gl.clear(gl.COLOR_BUFFER_BIT);
 
-  // Draw three points
-  gl.drawArrays(gl.POINTS, 0, n);
+  // Draw the rectangle
+  gl.drawArrays(gl.TRIANGLES, 0, n);
 }
 
 function initVertexBuffers(gl) {
   var vertices = new Float32Array([
-    0.0, 0.5,   -0.5, -0.5,   0.5, -0.5
+    0, 0.5,   -0.5, -0.5,   0.5, -0.5
   ]);
-  var n = 50; // The number of vertices
+  var n = 3; // The number of vertices
 
   // Create a buffer object
   var vertexBuffer = gl.createBuffer();
